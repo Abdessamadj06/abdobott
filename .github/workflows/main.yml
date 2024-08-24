@@ -27,7 +27,7 @@ jobs:
           node-version: 18
 
       - name: Install dependencies
-        run: unzip bot.zip && mkdir tmp && rm -rf pakcage-lock.json && npm i
+        run: mkdir tmp && rm -rf pakcage-lock.json && npm i
 
       - name: TErM
         run: export TERM=xterm
@@ -60,6 +60,11 @@ jobs:
           git add -A
           git diff-index --quiet HEAD || (git commit -a -m "out session update" --allow-empty)
           
+      
+      - name: pull
+        run: |
+          git pull origin main --rebase
+          git push origin main
       
       - name: push changes
         uses: ad-m/github-push-action@v0.6.0
