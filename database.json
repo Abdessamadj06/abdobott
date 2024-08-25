@@ -561,7 +561,7 @@
       "emas": 0,
       "emerald": 0,
       "esteh": 0,
-      "exp": 10533,
+      "exp": 10709,
       "expg": 0,
       "exphero": 0,
       "expired": 0,
@@ -1479,7 +1479,7 @@
       "emas": 0,
       "emerald": 0,
       "esteh": 0,
-      "exp": 2072,
+      "exp": 2136,
       "expg": 0,
       "exphero": 0,
       "expired": 0,
@@ -41516,7 +41516,7 @@
       "emas": 0,
       "emerald": 0,
       "esteh": 0,
-      "exp": 29,
+      "exp": 161,
       "expg": 0,
       "exphero": 0,
       "expired": 0,
@@ -43339,10 +43339,10 @@
       "lastSuccess": 1724165822996
     },
     "tools-fetch.js": {
-      "total": 68,
-      "success": 49,
-      "last": 1724627504215,
-      "lastSuccess": 1724627504215
+      "total": 70,
+      "success": 51,
+      "last": 1724628195479,
+      "lastSuccess": 1724628195479
     },
     "tools-elevenlab.js": {
       "total": 21,
