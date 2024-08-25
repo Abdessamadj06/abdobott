@@ -40193,7 +40193,7 @@
       "emas": 0,
       "emerald": 0,
       "esteh": 0,
-      "exp": 22,
+      "exp": 115,
       "expg": 0,
       "exphero": 0,
       "expired": 0,
@@ -41896,10 +41896,10 @@
       "lastSuccess": 1724609368611
     },
     "general-menu.js": {
-      "total": 162,
-      "success": 162,
-      "last": 1724611283184,
-      "lastSuccess": 1724611283184
+      "total": 163,
+      "success": 163,
+      "last": 1724623160598,
+      "lastSuccess": 1724623160598
     },
     "owner-exec2.js": {
       "total": 13,
@@ -41974,10 +41974,10 @@
       "lastSuccess": 1724548564622
     },
     "tools-playstore-search.js": {
-      "total": 11,
-      "success": 10,
-      "last": 1724521337969,
-      "lastSuccess": 1724521337969
+      "total": 14,
+      "success": 13,
+      "last": 1724624130658,
+      "lastSuccess": 1724624130658
     },
     "downloader-git.js": {
       "total": 4,
