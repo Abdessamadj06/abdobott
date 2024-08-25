@@ -561,7 +561,7 @@
       "emas": 0,
       "emerald": 0,
       "esteh": 0,
-      "exp": 10172,
+      "exp": 10177,
       "expg": 0,
       "exphero": 0,
       "expired": 0,
@@ -1020,7 +1020,7 @@
       "emas": 0,
       "emerald": 0,
       "esteh": 0,
-      "exp": 1058,
+      "exp": 1071,
       "expg": 0,
       "exphero": 0,
       "expired": 0,
@@ -2397,7 +2397,7 @@
       "emas": 0,
       "emerald": 0,
       "esteh": 0,
-      "exp": 1536,
+      "exp": 1811,
       "expg": 0,
       "exphero": 0,
       "expired": 0,
@@ -9279,7 +9279,7 @@
       "emas": 0,
       "emerald": 0,
       "esteh": 0,
-      "exp": 1484,
+      "exp": 1557,
       "expg": 0,
       "exphero": 0,
       "expired": 0,
@@ -24532,7 +24532,7 @@
       "emas": 0,
       "emerald": 0,
       "esteh": 0,
-      "exp": 6,
+      "exp": 16,
       "expg": 0,
       "exphero": 0,
       "expired": 0,
@@ -35020,7 +35020,7 @@
       "emas": 0,
       "emerald": 0,
       "esteh": 0,
-      "exp": 115,
+      "exp": 445,
       "expg": 0,
       "exphero": 0,
       "expired": 0,
@@ -37642,7 +37642,7 @@
       "emas": 0,
       "emerald": 0,
       "esteh": 0,
-      "exp": 68,
+      "exp": 116,
       "expg": 0,
       "exphero": 0,
       "expired": 0,
@@ -39305,9 +39305,9 @@
       "lastSuccess": 1724165822996
     },
     "tools-fetch.js": {
-      "total": 62,
+      "total": 63,
       "success": 45,
-      "last": 1724527226305,
+      "last": 1724543565793,
       "lastSuccess": 1724527226305
     },
     "tools-elevenlab.js": {
@@ -39353,10 +39353,10 @@
       "lastSuccess": 1724249836407
     },
     "copymybot.js": {
-      "total": 46,
-      "success": 36,
-      "last": 1724521272506,
-      "lastSuccess": 1724521272506
+      "total": 47,
+      "success": 37,
+      "last": 1724548564622,
+      "lastSuccess": 1724548564622
     },
     "tools-playstore-search.js": {
       "total": 11,
