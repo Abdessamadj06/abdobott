@@ -41075,7 +41075,7 @@
       "emas": 0,
       "emerald": 0,
       "esteh": 0,
-      "exp": 170,
+      "exp": 452,
       "expg": 0,
       "exphero": 0,
       "expired": 0,
@@ -44229,10 +44229,10 @@
       "lastSuccess": 1724609368611
     },
     "general-menu.js": {
-      "total": 172,
-      "success": 172,
-      "last": 1724658423488,
-      "lastSuccess": 1724658423488
+      "total": 173,
+      "success": 173,
+      "last": 1724662561095,
+      "lastSuccess": 1724662561095
     },
     "owner-exec2.js": {
       "total": 13,
@@ -44259,15 +44259,15 @@
       "lastSuccess": 1724631504671
     },
     "tools-elevenlab.js": {
-      "total": 23,
-      "success": 23,
-      "last": 1724647213393,
-      "lastSuccess": 1724647213393
+      "total": 25,
+      "success": 25,
+      "last": 1724662443092,
+      "lastSuccess": 1724662443092
     },
     "misc-emojimix.js": {
-      "total": 6,
+      "total": 7,
       "success": 3,
-      "last": 1724316821634,
+      "last": 1724662516648,
       "lastSuccess": 1724316821634
     },
     "misc-hd.js": {
@@ -44277,22 +44277,22 @@
       "lastSuccess": 1724183130638
     },
     "ramdan-ayati.js": {
-      "total": 8,
-      "success": 8,
-      "last": 1724647116027,
-      "lastSuccess": 1724647116027
+      "total": 10,
+      "success": 10,
+      "last": 1724662479783,
+      "lastSuccess": 1724662479783
     },
     "general-wm.js": {
-      "total": 8,
+      "total": 9,
       "success": 3,
-      "last": 1724647187262,
+      "last": 1724662420202,
       "lastSuccess": 1724196687265
     },
     "mail.js": {
-      "total": 9,
-      "success": 9,
-      "last": 1724647154351,
-      "lastSuccess": 1724647154351
+      "total": 10,
+      "success": 10,
+      "last": 1724662541702,
+      "lastSuccess": 1724662541702
     },
     "downloader-mediafire.js": {
       "total": 7,
@@ -44301,10 +44301,10 @@
       "lastSuccess": 1724249836407
     },
     "copymybot.js": {
-      "total": 49,
-      "success": 39,
-      "last": 1724646927909,
-      "lastSuccess": 1724646927909
+      "total": 50,
+      "success": 40,
+      "last": 1724662575881,
+      "lastSuccess": 1724662575881
     },
     "tools-playstore-search.js": {
       "total": 15,
@@ -44313,9 +44313,9 @@
       "lastSuccess": 1724624470814
     },
     "downloader-git.js": {
-      "total": 4,
+      "total": 5,
       "success": 1,
-      "last": 1724521469980,
+      "last": 1724662357390,
       "lastSuccess": 1724521469980
     },
     "owner-mute.js": {
@@ -44325,10 +44325,10 @@
       "lastSuccess": 1724455237686
     },
     "tools-id.js": {
-      "total": 6,
-      "success": 4,
-      "last": 1724647235743,
-      "lastSuccess": 1724647235743
+      "total": 8,
+      "success": 5,
+      "last": 1724662339868,
+      "lastSuccess": 1724662339868
     }
   },
   "msgs": {},
