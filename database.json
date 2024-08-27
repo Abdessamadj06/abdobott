@@ -561,7 +561,7 @@
       "emas": 0,
       "emerald": 0,
       "esteh": 0,
-      "exp": 13164,
+      "exp": 13491,
       "expg": 0,
       "exphero": 0,
       "expired": 0,
@@ -1479,7 +1479,7 @@
       "emas": 0,
       "emerald": 0,
       "esteh": 0,
-      "exp": 2805,
+      "exp": 2852,
       "expg": 0,
       "exphero": 0,
       "expired": 0,
@@ -2856,7 +2856,7 @@
       "emas": 0,
       "emerald": 0,
       "esteh": 0,
-      "exp": 3021,
+      "exp": 3168,
       "expg": 0,
       "exphero": 0,
       "expired": 0,
@@ -6526,7 +6526,7 @@
       "emas": 0,
       "emerald": 0,
       "esteh": 0,
-      "exp": 601,
+      "exp": 627,
       "expg": 0,
       "exphero": 0,
       "expired": 0,
@@ -8821,7 +8821,7 @@
       "emas": 0,
       "emerald": 0,
       "esteh": 0,
-      "exp": 1295,
+      "exp": 1431,
       "expg": 0,
       "exphero": 0,
       "expired": 0,
@@ -9280,7 +9280,7 @@
       "emas": 0,
       "emerald": 0,
       "esteh": 0,
-      "exp": 1603,
+      "exp": 1699,
       "expg": 0,
       "exphero": 0,
       "expired": 0,
@@ -13235,7 +13235,7 @@
       "emas": 0,
       "emerald": 0,
       "esteh": 0,
-      "exp": 464,
+      "exp": 488,
       "expg": 0,
       "exphero": 0,
       "expired": 0,
@@ -48452,7 +48452,7 @@
       "emas": 0,
       "emerald": 0,
       "esteh": 0,
-      "exp": 501,
+      "exp": 517,
       "expg": 0,
       "exphero": 0,
       "expired": 0,
@@ -49334,7 +49334,7 @@
       "emas": 0,
       "emerald": 0,
       "esteh": 0,
-      "exp": 229,
+      "exp": 244,
       "expg": 0,
       "exphero": 0,
       "expired": 0,
@@ -52227,10 +52227,10 @@
   },
   "stats": {
     "owner-savefile.js": {
-      "total": 57,
-      "success": 45,
-      "last": 1724688890702,
-      "lastSuccess": 1724688890702
+      "total": 61,
+      "success": 49,
+      "last": 1724800589854,
+      "lastSuccess": 1724800589854
     },
     "owner-exec.js": {
       "total": 91,
@@ -52239,10 +52239,10 @@
       "lastSuccess": 1724691374175
     },
     "general-menu.js": {
-      "total": 191,
-      "success": 191,
-      "last": 1724792614280,
-      "lastSuccess": 1724792614280
+      "total": 192,
+      "success": 192,
+      "last": 1724800491973,
+      "lastSuccess": 1724800491973
     },
     "owner-exec2.js": {
       "total": 20,
@@ -52339,6 +52339,12 @@
       "success": 7,
       "last": 1724787031256,
       "lastSuccess": 1724787031256
+    },
+    "downloader-apkx.js": {
+      "total": 9,
+      "success": 5,
+      "last": 1724800610769,
+      "lastSuccess": 1724800478999
     }
   },
   "msgs": {},
