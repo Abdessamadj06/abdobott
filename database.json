@@ -561,7 +561,7 @@
       "emas": 0,
       "emerald": 0,
       "esteh": 0,
-      "exp": 12595,
+      "exp": 12710,
       "expg": 0,
       "exphero": 0,
       "expired": 0,
@@ -7903,7 +7903,7 @@
       "emas": 0,
       "emerald": 0,
       "esteh": 0,
-      "exp": 86,
+      "exp": 92,
       "expg": 0,
       "exphero": 0,
       "expired": 0,
@@ -51299,10 +51299,10 @@
       "lastSuccess": 1724786779075
     },
     "owner-exec2.js": {
-      "total": 19,
-      "success": 19,
-      "last": 1724688403338,
-      "lastSuccess": 1724688403338
+      "total": 20,
+      "success": 20,
+      "last": 1724789112056,
+      "lastSuccess": 1724789112056
     },
     "owner-owner.js": {
       "total": 6,
@@ -51317,10 +51317,10 @@
       "lastSuccess": 1724165822996
     },
     "tools-fetch.js": {
-      "total": 76,
-      "success": 57,
-      "last": 1724631504671,
-      "lastSuccess": 1724631504671
+      "total": 79,
+      "success": 60,
+      "last": 1724788919540,
+      "lastSuccess": 1724788919540
     },
     "tools-elevenlab.js": {
       "total": 28,
