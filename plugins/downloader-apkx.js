@@ -11,18 +11,13 @@ let handler = async (m, { conn, args, text, usedPrefix, command }) => {
     let apkData = await response.json();
 
     const list = apkData.map((app, index) => {
-        let json = JSON.stringify({
-            downloadUrl: app.downloadUrl,
-            downloadType: app.downloadType,
-            packageName: app.packageName
-        });
-
         return {
             title: `App ${index + 1}: ${app.title}`,
             rows: [
                 {
                     title: app.title,
-                    id: `.doapk`
+                    description: `Version: ${app.version}\nInstall Total: ${app.installTotal}\nScore: ${app.score}\nSize: ${app.fileSize}\nType: ${app.downloadType}`,
+                    id: `${usedPrefix}apk2 ${app.downloadUrl}`
                 }
             ]
         };
@@ -42,7 +37,7 @@ let handler = async (m, { conn, args, text, usedPrefix, command }) => {
 
     const interactiveMessage = {
         body: { text: "Choose an APK to download :" },
-        footer: { text: "_by jeenTeam_" },
+        footer: { text: "_by JeenTeam_" },
         header: {
             hasMediaAttachment: true,
             ...(await prepareWAMessageMedia({ image: { url: apkData[0].icon } }, { upload: conn.waUploadToServer }))
