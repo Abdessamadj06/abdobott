@@ -27,27 +27,34 @@ let handler = async (m, { conn, args, text, usedPrefix, command }) => {
 handler.command = /^(apk2)$/i;
 handler.help = ['apkpure'];
 handler.tags = ['downloader'];
-handler.rigister = true;
-handler.limit = 5
+handler.register = false;
+handler.limit = 0;
 export default handler;
 
 async function apk(text) {
-  let response = await fetch(`https://satisfying-spice-hamster.glitch.me/search?q=${text}`);
-  let $ = await response.json();
-  let name = $.appName;
-  let icon = $.image;
-  let dl = $.Downloadlink;
-  let format = $.appFormat;
-  if(!dl) throw 'Can\'t download the apk!';
-  let dc = $.downloadCount;
-  let path = $.packageName;
-  let mimetype = (await fetch(dl, { method: 'head' })).headers.get('content-type');
-  const getsize = (await fetch(dl, { method: 'head' })).headers.get('Content-Length');
-  if (getsize > 9500000000) {
-  throw 'The apk file size is too large. The maximum download size is 500 megabytes.';
-  }
-  let size = formatBytes(parseInt(getsize));
-  return { name, icon, dl, dc, path, format, size, mimetype}
+    const url = `https://lovely-moral-asp.ngrok-free.app/api/apkpure?q=${encodeURIComponent(text)}`;
+
+    let response = await fetch(url);
+    if (!response.ok) throw 'Failed to fetch the APK details. Please try again later.';
+    
+    let $ = await response.json();
+    let name = $.appName;
+    let icon = $.image;
+    let dl = $.Downloadlink;
+    let format = $.appFormat;
+    if (!dl) throw 'Can\'t download the apk!';
+    
+    let dc = $.downloadCount;
+    let path = $.packageName;
+    let mimetype = (await fetch(dl, { method: 'HEAD' })).headers.get('content-type');
+    const getsize = (await fetch(dl, { method: 'HEAD' })).headers.get('Content-Length');
+    
+    if (getsize > 500 * 1024 * 1024) { // 500 MB limit
+        throw 'The apk file size is too large. The maximum download size is 500 megabytes.';
+    }
+    
+    let size = formatBytes(parseInt(getsize));
+    return { name, icon, dl, dc, path, format, size, mimetype };
 }
 
 function formatBytes(bytes, decimals = 2) {
