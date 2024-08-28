@@ -11,13 +11,18 @@ let handler = async (m, { conn, args, text, usedPrefix, command }) => {
     let apkData = await response.json();
 
     const list = apkData.map((app, index) => {
+        let json = JSON.stringify({
+            downloadUrl: app.downloadUrl,
+            downloadType: app.downloadType,
+            packageName: app.packageName
+        });
+
         return {
             title: `App ${index + 1}: ${app.title}`,
             rows: [
                 {
                     title: app.title,
-                    description: `Version: ${app.version}\nInstall Total: ${app.installTotal}\nScore: ${app.score}\nSize: ${app.fileSize}\nType: ${app.downloadType}`,
-                    id: `${usedPrefix}doapk ${app.downloadUrl}`
+                    id: `.doapk`
                 }
             ]
         };

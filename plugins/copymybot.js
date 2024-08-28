@@ -261,7 +261,7 @@ jddt()
 })
 
 } 
-handler.help = [`jadibot`]
+handler.help = [`jadibot --code`]
 handler.tags = [`misc`]
 handler.command = /^(jadibot)/i
 
