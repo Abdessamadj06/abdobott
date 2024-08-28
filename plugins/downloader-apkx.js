@@ -5,11 +5,13 @@ const { generateWAMessageFromContent, proto, prepareWAMessageMedia } = pkg;
 let handler = async (m, { conn, args, text, usedPrefix, command }) => {
     if (command === 'apk') {
         if (!args[0]) throw 'Ex: ' + usedPrefix + command + ' Facebook lite';
-        let q = text;
+        await m.reply("*LOADING...*");
+let q = text;
         let apiUrl = `https://lovely-moral-asp.ngrok-free.app/api/apkpure?q=${q}`;
         let response = await fetch(apiUrl);
         if (!response.ok) throw 'Error fetching APK data';
         let apkData = await response.json();
+
 
         const list = apkData.map((app, index) => {
             let json = JSON.stringify({
@@ -79,9 +81,6 @@ let handler = async (m, { conn, args, text, usedPrefix, command }) => {
         }
 
         let mimetype = (await fetch(downloadUrl, { method: 'HEAD' })).headers.get('content-type');
-        if (!mimetype || mimetype !== 'application/vnd.android.package-archive') {
-            mimetype = 'application/vnd.android.package-archive';
-        }
 
         const size = (await fetch(downloadUrl, { method: 'HEAD' })).headers.get('Content-Length');
         if (size > 699 * 1024 * 1024) throw 'File size exceeds 699 MB';
