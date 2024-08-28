@@ -9,7 +9,7 @@ let handler = async (m, { conn, text }) => {
   }, { quoted: m })
 }
 
-handler.command = ['elevenlab', 'aibowo']
-handler.help = ['elevenlab', 'aibowo']
+handler.command = ['elevenlab']
+handler.help = ['elevenlab']
 handler.tags = ['misc']
 export default handler
