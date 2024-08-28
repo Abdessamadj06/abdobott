@@ -42,7 +42,7 @@ let handler = async (m, { conn, args, text, usedPrefix, command }) => {
 
     const interactiveMessage = {
         body: { text: "Choose an APK to download :" },
-        footer: { text: "_by Mee6Team_" },
+        footer: { text: "_by jeenTeam_" },
         header: {
             hasMediaAttachment: true,
             ...(await prepareWAMessageMedia({ image: { url: apkData[0].icon } }, { upload: conn.waUploadToServer }))
