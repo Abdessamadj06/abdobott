@@ -18,10 +18,10 @@ let handler = async (m, { conn, args, text, usedPrefix, command }) => {
         });
 
         return {
-            title: `App ${index + 1}: ${app.name}`,
+            title: `App ${index + 1}: ${app.title}`,
             rows: [
                 {
-                    title: app.name,
+                    title: app.title,
                     id: `.doapk`
                 }
             ]

