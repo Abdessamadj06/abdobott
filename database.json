@@ -1479,7 +1479,7 @@
       "emas": 0,
       "emerald": 0,
       "esteh": 0,
-      "exp": 2857,
+      "exp": 2860,
       "expg": 0,
       "exphero": 0,
       "expired": 0,
@@ -55925,7 +55925,7 @@
       "emas": 0,
       "emerald": 0,
       "esteh": 0,
-      "exp": 38,
+      "exp": 77,
       "expg": 0,
       "exphero": 0,
       "expired": 0,
@@ -58562,10 +58562,10 @@
       "lastSuccess": 1724808674390
     },
     "downloader-apkx.js": {
-      "total": 38,
-      "success": 26,
-      "last": 1724811421489,
-      "lastSuccess": 1724809472247
+      "total": 39,
+      "success": 27,
+      "last": 1724813705840,
+      "lastSuccess": 1724813705840
     },
     "downloader-doapk.js": {
       "total": 4,
