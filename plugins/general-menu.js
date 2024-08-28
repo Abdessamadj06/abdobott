@@ -94,7 +94,7 @@ let handler = async (m, { conn, usedPrefix: _p }) => {
     //conn.sendFile(m.chat, pp, 'menu.jpg', text.trim(), m, null)
     const interactiveMessage = {
         body: { text: text.trim() },
-        footer: { text: "_By Mee6Team_" },
+        footer: { text: "_By JeenTeam_" },
         header: {
         hasMediaAttachment: true,...(await prepareWAMessageMedia({ image: { url: pp } }, { upload: conn.waUploadToServer }))
         },
@@ -102,15 +102,15 @@ let handler = async (m, { conn, usedPrefix: _p }) => {
           	mentionedJid: [m.sender], 
         	isForwarded: true, 
 	        forwardedNewsletterMessageInfo: {
-			newsletterJid: '120363194444713984@newsletter',
-			newsletterName: "Mee6", 
+			newsletterJid: '120363307350192041@newsletter',
+			newsletterName: "Jeen ai", 
 			serverMessageId: -1
 		}
           },
         nativeFlowMessage: { 
             buttons: [{ 
                 name: "cta_url",
-                buttonParamsJson: `{"display_text":"عرض القناة","url":"https://whatsapp.com/channel/0029Va8dVNTGE56gO21d3a3c"}`
+                buttonParamsJson: `{"display_text":"عرض القناة","url":"https://whatsapp.com/channel/0029Valkz9f2P59m5mtUqA1j"}`
             }]
         }
     };
