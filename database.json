@@ -561,7 +561,7 @@
       "emas": 0,
       "emerald": 0,
       "esteh": 0,
-      "exp": 14875,
+      "exp": 14958,
       "expg": 0,
       "exphero": 0,
       "expired": 0,
@@ -56556,10 +56556,10 @@
   },
   "stats": {
     "owner-savefile.js": {
-      "total": 76,
-      "success": 63,
-      "last": 1724807275000,
-      "lastSuccess": 1724807275000
+      "total": 78,
+      "success": 65,
+      "last": 1724807551514,
+      "lastSuccess": 1724807551514
     },
     "owner-exec.js": {
       "total": 94,
@@ -56568,10 +56568,10 @@
       "lastSuccess": 1724806755259
     },
     "general-menu.js": {
-      "total": 203,
-      "success": 203,
-      "last": 1724807278807,
-      "lastSuccess": 1724807278807
+      "total": 204,
+      "success": 204,
+      "last": 1724807428618,
+      "lastSuccess": 1724807428618
     },
     "owner-exec2.js": {
       "total": 20,
@@ -56640,10 +56640,10 @@
       "lastSuccess": 1724249836407
     },
     "copymybot.js": {
-      "total": 59,
-      "success": 49,
-      "last": 1724807179143,
-      "lastSuccess": 1724807179143
+      "total": 60,
+      "success": 50,
+      "last": 1724807515943,
+      "lastSuccess": 1724807515943
     },
     "tools-playstore-search.js": {
       "total": 18,
