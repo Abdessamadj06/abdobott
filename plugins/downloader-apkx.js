@@ -101,6 +101,6 @@ let handler = async (m, { conn, args, text, usedPrefix, command }) => {
 };
 
 handler.command = /^(apk|doapk)$/i;
-handler.help = ['apk'];
-handler.tags = ['downloader'];
+handler.help = ['apk']
+handler.tags = ['downloader']
 export default handler;
