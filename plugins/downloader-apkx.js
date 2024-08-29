@@ -1,15 +1,16 @@
 import pkg from '@whiskeysockets/baileys';
 import fetch from 'node-fetch';
-const { prepareWAMessageMedia } = pkg;
+const { generateWAMessageFromContent, proto, prepareWAMessageMedia } = pkg;
 
 let handler = async (m, { conn, args, text, usedPrefix, command }) => {
     if (command === 'apk') {
         if (!args[0]) throw 'Ex: ' + usedPrefix + command + ' Facebook lite';
         await m.reply("*LOADING...*");
-        let query = args.join(' ');
-        let apiUrl = `https://apkpure.com/api/v1/search_suggestion_new?key=${encodeURIComponent(query)}&limit=20`;
+        let q = text;
+        let apiUrl = `https://lovely-moral-asp.ngrok-free.app/api/apkpure?q=${q}`;
         let response = await fetch(apiUrl);
         if (!response.ok) throw 'Error fetching APK data';
+
         let apkData = await response.json();
         if (!apkData || apkData.length === 0) throw 'No APK data found';
 
