@@ -1,70 +1,59 @@
-import fetch from 'node-fetch';
+import yts from 'yt-search';
+import { generateWAMessageFromContent, prepareWAMessageMedia, proto } from "@adiwajshing/baileys";
 
-let handler = async (m, { conn, args, text, usedPrefix, command }) => {
-    if (!text) throw 'Usage: ' + usedPrefix + command + ' <app name>';
-
-    await m.reply('_Searching, please wait..._');
+const handler = async (m, { conn, text, usedPrefix }) => {
+    if (!text) {
+        return conn.reply(m.chat, "Please provide the name of a YouTube video or channel.", m);
+    }
 
     try {
-        let res = await apk(text);
+        let result = await yts(text);
+        let videos = result.videos;
+        let channels = result.channels;
+        let searchResults = videos.concat(channels);
+        
+        let sections = [];
+        searchResults.forEach((item, index) => {
+            let image = item.thumbnail || item.image;
+            sections.push({
+                title: item.type === 'video' ? `Video: ${item.title}` : `Channel: ${item.name}`,
+                rows: [
+                    {
+                        title: "Watch Video",
+                        description: `${item.title || item.name} | ${item.timestamp || ''}\n`,
+                        rowId: `${usedPrefix}ytmp4 ${item.url}`,
+                        image
+                    },
+                    {
+                        title: "Download Audio",
+                        description: `${item.title || item.name} | ${item.timestamp || ''}\n`,
+                        rowId: `${usedPrefix}ytmp3 ${item.url}`,
+                        image
+                    }
+                ]
+            });
+        });
 
-        const message = `
-*Name:* ${res.name}
-*Downloads:* ${res.dc}
-*Package:* ${res.path}
-*File Size:* ${res.size}
+        const listMessage = {
+            text: `Search results for: ${text}`,
+            sections,
+            title: "YouTube Search",
+            buttonText: "Select a result",
+            headerType: 1
+        };
 
-> By majnon._.98
-`;
+        const message = await generateWAMessageFromContent(m.chat, proto.Message.fromObject({
+            listMessage: proto.Message.ListMessage.create(listMessage)
+        }), {});
 
-        const fileName = `${res.path}.${res.format}`;
+        await conn.relayMessage(m.chat, message.message, { messageId: message.key.id });
 
-        await Promise.all([
-            conn.sendMessage(m.chat, { image: { url: res.icon }, caption: message, footer: '_Apk files..._' }),
-            conn.sendMessage(m.chat, { document: { url: res.dl }, mimetype: res.mimetype, fileName: fileName }, { quoted: m })
-        ]);
-    } catch (error) {
-        await m.reply(`Error: ${error.message}`);
+    } catch (e) {
+        conn.reply(m.chat, `An error occurred. Please try again later.`, m);
+        console.error(e);
     }
-}
+};
 
-handler.command = /^(apk6)$/i;
+handler.command = ["test"];
+
 export default handler;
-
-async function apk(text) {
-    try {
-        let response = await fetch(`https://apkpure.com/api/apkpure?q=${text}`);
-        let data = await response.json();
-
-        if (!data || !data.results || data.results.length === 0) throw new Error('No results found!');
-        
-        let app = data.results[0];
-        let name = app.title || 'Unknown';
-        let icon = app.icon || '';
-        let dl = app.downloadUrl || '';
-        let format = app.format || 'apk';  // Default to 'apk' if format is not provided
-        let dc = app.downloadCount || '0';
-        let path = app.packageName || 'unknown';
-        
-        let mimetype = (await fetch(dl, { method: 'head' })).headers.get('content-type');
-        let getsize = (await fetch(dl, { method: 'head' })).headers.get('Content-Length');
-
-        if (parseInt(getsize) > 500000000) {  // 500 MB
-            throw new Error('The apk file size is too large. The maximum download size is 500 megabytes.');
-        }
-        
-        let size = formatBytes(parseInt(getsize));
-        return { name, icon, dl, dc, path, format, size, mimetype };
-    } catch (error) {
-        throw new Error(`Error fetching APK data: ${error.message}`);
-    }
-}
-
-function formatBytes(bytes, decimals = 2) {
-    if (bytes === 0) return '0 Bytes';
-    const k = 1024;
-    const dm = decimals < 0 ? 0 : decimals;
-    const sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];
-    const i = Math.floor(Math.log(bytes) / Math.log(k));
-    return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + ' ' + sizes[i];
-}
