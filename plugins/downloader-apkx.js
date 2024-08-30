@@ -1,59 +1,57 @@
+import { search } from "aptoide-scraper";
 import pkg from '@whiskeysockets/baileys';
-import fetch from 'node-fetch';
-const { generateWAMessageFromContent, proto, prepareWAMessageMedia } = pkg;
+const { proto, generateWAMessageFromContent, prepareWAMessageMedia } = pkg;
 
-let handler = async (m, { conn, args, text, usedPrefix, command }) => {
-    if (command === 'apk') {
-        if (!args[0]) throw 'Ex: ' + usedPrefix + command + ' Facebook lite';
-        await m.reply("*LOADING...*");
-        let q = text;
-        let apiUrl = `https://lovely-moral-asp.ngrok-free.app/api/apkpure?q=${q}`;
-        let response = await fetch(apiUrl);
-        if (!response.ok) throw 'Error fetching APK data';
+const searchHandler = async (m, { conn, prefix }) => {
+    const query = m.text.trim().split(/ +/).slice(1).join(" ");
+    if (!query) return await conn.reply(m.chat, `*Please type the name of the app you want to download, e.g.:*\n\n.apk Minecraft`, m);
 
-        let apkData = await response.json();
-        if (!apkData || apkData.length === 0) throw 'No APK data found';
-
-        const list = apkData.map((app, index) => {
-            let json = JSON.stringify({
-                downloadUrl: app.downloadUrl,
-                downloadType: app.downloadType,
-                packageName: app.packageName
-            });
-
-            return {
-                title: `App ${index + 1}: ${app.title}`,
-                rows: [
-                    {
-                        title: app.title,
-                        id: `${usedPrefix}doapk ${json}`
-                    }
-                ]
-            };
-        });
-
-        const sections = list.map((item) => {
-            return {
-                title: item.title,
-                rows: item.rows
-            };
-        });
+    try {
+        const searchResults = await search(query);
+        if (searchResults.length === 0) throw "No results found for your search."
 
         const buttonParamsJson = JSON.stringify({
-            title: "Available APKs",
-            sections: sections
+            title: "Show Options",
+            sections: [
+                {
+                    title: "Search Results",
+                    rows: searchResults.map((result, index) => ({
+                        header: `${result.name}`,
+                        title: " ",
+                        id: `.apk3 ${result.name}`,
+                        description: ` ${result.id || 'Not available'}`
+                    }))
+                }
+            ]
         });
-        
-        let icon = apkData[0].icon;
-        if (!icon) throw 'No icon found for the APK!';
+
+        const wm = "Please waitt......";
+        const info = "*Please click the button below to Follow my channel*".trim();
+        const thumbnailUrl = 'https://telegra.ph/file/20f920e89a67c00f61543.jpg'; // Replace with actual thumbnail URL
+
+        await conn.sendButton(
+            m.chat, 
+            wm, 
+            info, 
+            thumbnailUrl, 
+            [
+                ['Owner 👤', '/owner']
+            ], 
+            null, 
+            [
+                ['Follow channel', `https://whatsapp.com/channel/0029Valkz9f2P59m5mtUqA1j`]
+            ], 
+            m, 
+            {
+                contextInfo: {
+                    mentionedJid: [m.sender]
+                }
+            }
+        );
 
         const interactiveMessage = {
-            body: { text: "Choose an APK to download :" },
-            footer: { text: "_by JeenTeam_" },
-            header: {
-                hasMediaAttachment: true,
-                ...(await prepareWAMessageMedia({ image: { url: icon } }, { upload: conn.waUploadToServer }))
-            },
+            body: { text: `Search results for: ${query}` },
+            footer: { text: "@majnon._.98" },
             nativeFlowMessage: {
                 buttons: [{
                     name: "single_select",
@@ -68,39 +66,12 @@ let handler = async (m, { conn, args, text, usedPrefix, command }) => {
         };
 
         await conn.relayMessage(m.chat, { viewOnceMessage: { message } }, {});
-    } else if (command === 'doapk') {
-        if (!text) throw 'Error: No data provided.';
-        
-        const json = text;
-        const parsedData = JSON.parse(json);
-        
-        await m.reply("Please Wait 🫸🏻");
-        
-        const downloadUrl = parsedData.downloadUrl;
-        const packageName = parsedData.packageName;
-        let downloadType = parsedData.downloadType;
-
-        if (downloadType !== 'apk' && downloadType !== 'xapk') {
-            downloadType = 'apk';
-        }
-
-        let response = await fetch(downloadUrl, { method: 'HEAD' });
-        let mimetype = response.headers.get('content-type');
-        let size = response.headers.get('Content-Length');
-
-        if (size > 699 * 1024 * 1024) throw 'File size exceeds 699 MB';
-
-        const fileName = `${packageName}.${downloadType}`;
-
-        await conn.sendMessage(
-            m.chat,
-            { document: { url: downloadUrl }, mimetype: mimetype, fileName: fileName },
-            { quoted: m }
-        );
+    } catch (e) {
+        console.log(e)
     }
 };
 
-handler.command = /^(apk|doapk)$/i;
-handler.help = ['apk']
-handler.tags = ['downloader']
-export default handler;
+searchHandler.command = /^(apk)$/i;
+searchHandler.limit = 5
+
+export default searchHandler;
