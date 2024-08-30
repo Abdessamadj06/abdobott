@@ -1,88 +1,43 @@
 import yts from 'yt-search';
-const { generateWAMessageFromContent, prepareWAMessageMedia, proto } = await (await import('@adiwajshing/baileys')).default;
 
-const handler = async (m, { conn, text }) => {
+let handler = async (m, { conn, usedPrefix, text, args, command }) => {
     if (!text) {
-        return m.reply('البحث في اليوتوب مثال :\n.yts اخبار اليوم');
+        conn.reply(m.chat, `Please provide the name of a YouTube video or channel.`, m);
+        return;
     }
+    try {
+        let result = await yts(text);
+        let ytres = result.videos;
+        let teskd = `Search results for *${text}*`;
 
-    const searchResults = (await yts(text)).all;
-    const videoResults = searchResults.filter(result => result.type === 'video');
-    const channelResults = searchResults.filter(result => result.type === 'channel');
-
-    const messageText = 'يرجى اختيار الفيديو الخاص بك أو ملفات الصوت الخاصة بك عن طريق النقر على الزر';
-    const imageUrl = channelResults.length ? channelResults[0].image : (videoResults.length ? videoResults[0].image : 'default_image_url_here');
-    
-    const sections = [
-        {
-            title: 'jeen bot',
-            rows: [
-                {
-                    title: 'jeen bot',
-                }
-            ]
+        let listSections = [];
+        for (let index in ytres) {
+            let v = ytres[index];
+            listSections.push({
+                title: `Results`,
+                rows: [
+                    {
+                        header: 'Audio',
+                        title: "",
+                        description: `${v.title} | ${v.timestamp}\n`, 
+                        id: `${usedPrefix}ytmp3 ${v.url}`
+                    },
+                    {
+                        header: "Video",
+                        title: "" ,
+                        description: `${v.title} | ${v.timestamp}\n`, 
+                        id: `${usedPrefix}ytmp4 ${v.url}`
+                    }
+                ]
+            });
         }
-    ];
-
-    videoResults.forEach(video => {
-        sections.push({
-            title: video.title,
-            rows: [
-                {
-                    title: 'على شكل فيديو',
-                    description: `Get video from "${video.title}"`,
-                    id: `.ytmp4 ${video.url}`
-                },
-                {
-                    title: 'على شكل موسيقى',
-                    description: `Get audio from "${video.title}"`,
-                    id: `.play ${video.url}`
-                }
-            ]
-        });
-    });
-
-    const listMessage = {
-        title: 'إضغط هنا !',
-        sections
-    };
-
-    const imageMessage = {
-        image: { url: imageUrl }
-    };
-
-    const mediaMessageOptions = {
-        upload: conn.waUploadToServer
-    };
-
-    const waMessage = await generateWAMessageFromContent(m.chat, {
-        viewOnceMessage: {
-            message: {
-                messageContextInfo: {
-                    deviceListMetadata: {},
-                    deviceListMetadataVersion: 2
-                },
-                interactiveMessage: proto.Message.InteractiveMessage.create({
-                    body: proto.Message.InteractiveMessage.Body.create({ text: messageText }),
-                    footer: proto.Message.InteractiveMessage.Footer.create({ text: 'jeen' }),
-                    header: proto.Message.InteractiveMessage.Header.create({
-                        subtitle: 'jeen bot',
-                        hasMediaAttachment: true,
-                        ...(await prepareWAMessageMedia(imageMessage, mediaMessageOptions))
-                    }),
-                    nativeFlowMessage: proto.Message.InteractiveMessage.NativeFlowMessage.create({
-                        buttons: [{
-                            name: 'single_select',
-                            buttonParamsJson: JSON.stringify(listMessage)
-                        }]
-                    })
-                })
-            }
-        }
-    }, {});
-
-    await conn.relayMessage(m.chat, waMessage.message, { messageId: waMessage.key.id });
+        await conn.sendList(m.chat, `*Results*\n`, `Search results for: ${text}`, `Search`, listSections, m);
+    } catch (e) {
+        m.reply(`Please try again.`);
+        console.log(e);
+    }
 };
 
-handler.command = ['ytsearch', 'yts'];
+handler.command = /^playlist|ytbuscar|yts(earch)?$/i;
+
 export default handler;
